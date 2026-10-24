@@ -17,7 +17,7 @@ import threading
 from flask import Flask
 
 # --- بخش اضافه شده برای Render ---
-app_web = Flask(name)
+app_web = Flask(__name__)
 
 @app_web.route('/')
 def health_check():
