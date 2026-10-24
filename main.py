@@ -12,7 +12,24 @@ Commands:
 import logging
 import os
 import sys
+import os
+import threading
+from flask import Flask
 
+# --- بخش اضافه شده برای Render ---
+app_web = Flask(name)
+
+@app_web.route('/')
+def health_check():
+    return "Bot is alive!", 200
+
+def run_web_server():
+    port = int(os.environ.get("PORT", 7860))
+    app_web.run(host='0.0.0.0', port=port)
+
+# اجرای سرور وب در یک ترد جداگانه تا ربات متوقف نشود
+threading.Thread(target=run_web_server, daemon=True).start()
+# ---------------------------------
 from telegram import Update, ReplyKeyboardMarkup, ReplyKeyboardRemove
 from telegram.ext import (
     Application,
