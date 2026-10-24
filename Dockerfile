@@ -10,6 +10,6 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-
+EXPOSE 7860
 # اجرای فایل اصلی ربات
 CMD ["python", "main.py"]
